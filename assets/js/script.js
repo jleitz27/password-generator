@@ -9,6 +9,8 @@ function writePassword() {
 
     passwordText.value = password;
 
+    console.log(getCriteria)
+
 }
 
 // Add event listener to generate button
@@ -22,7 +24,29 @@ function getCriteria() {
         includeupperCase: false,
         includenumbers: false,
         includespecialCharacters: false,
+    }
 
+    userCriteria.length = askPasswordLength ();
+    console.log(userCriteria.length)
+
+    function askPasswordLength(){
+        var length = prompt("How long do you want the password to be? (Must be between 8 and 128 characters)")
+        
+        while (!isPasswordLengthValid (length)) {
+            length = prompt("Sorry, ${length} is an invalid length. (Must be between 8 and 128 characters)")
+        }
+            
+        
+
+        function isPasswordLengthValid (length){
+            var convertedLength = Number(length);
+            var isPasswordLengthValid = (!Number.isNaN(convertedLength)
+            && convertedLength % 1===0
+            && convertedLength >=8
+            && convertedLength <=123);
+
+            return isPasswordLengthValid;
+        }
     }
 }
 
