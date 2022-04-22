@@ -27,15 +27,17 @@ function getCriteria() {
     }
 
     userCriteria.length = askPasswordLength ();
-    console.log(userCriteria.length)
+    console.log(length)
 
     function askPasswordLength(){
-        var length = prompt("How long do you want the password to be? (Must be between 8 and 128 characters)")
+        var length = prompt("How long do you want the password to be? (Must be between 8 and 128 characters)");
         
         while (!isPasswordLengthValid (length)) {
-            length = prompt("Sorry, ${length} is an invalid length. (Must be between 8 and 128 characters)")
+            length = prompt("Sorry, " + length + " is an invalid length. (Must be a number between 8 and 128)");
         }
-            
+        
+        return length;
+    }    
         
 
         function isPasswordLengthValid (length){
@@ -47,7 +49,7 @@ function getCriteria() {
 
             return isPasswordLengthValid;
         }
-    }
+    
 }
 
 // functinons for characters
