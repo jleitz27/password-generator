@@ -48,7 +48,20 @@ function isPasswordLengthValid (length){
 
             return isPasswordLengthValid;
 }
+
+// Make sure a character type is selected
+function isCharacterTypeSelected(userCriteria) {
+    var userCriteriaKeys = Object.values(userCriteria);
+
+    for (var i =1; i< userCriteriaKeys.length; i++) {
+        if (userCriteriaKeys[i]) {
+            return true;
+        }
+    }
+    alert("You did not select any character types to include in your password. Please select at least one character type.")
+}
     
+//Generate Password
 
 
 //get requested characters
