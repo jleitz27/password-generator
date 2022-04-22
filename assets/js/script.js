@@ -1,10 +1,11 @@
 // Assignment code here
+
 // Get Criteria Function
 function getCriteria() {
     var userCriteria = {
         length: 8,
         includeLowerCase: true,
-        includeUpperCase: false,
+        includeUppercase: false,
         includeNumbers: false,
         includeSpecialCharacters: false,
     }
@@ -15,7 +16,7 @@ function getCriteria() {
     do {
         userCriteria.includeLowerCase = confirm("Do you want to include lowercase characters?");
 
-        userCriteria.includeUpperCase = confirm("Do you want to include uppercase characters?");
+        userCriteria.includeUppercase = confirm("Do you want to include uppercase characters?");
 
         userCriteria.includeNumbers = confirm("Do you want to include numbers?");
 
@@ -25,6 +26,7 @@ function getCriteria() {
     } while (!isCharacterTypeSelected(userCriteria));
 
     return userCriteria;
+    console.log(userCriteria)
 }
 
     // Set length of password to 8-128 characters
@@ -62,7 +64,37 @@ function isCharacterTypeSelected(userCriteria) {
 }
     
 //Generate Password
+function generatePassword(userCriteria){
+    var allRequestedCharacters = getRequestedCharacters(userCriteria);
 
+    var numberOfCharacterTypes = allRequestedCharacters.length;
+
+    var availableCharacterTypes = getListOfCharacterTypes(numberOfCharacterTypes);
+
+    var password =[];
+
+    for (var i =0; i< userCriteria.length; i++){
+        var indexOfCharacterTypes = Math.floor(Math.random()*availableCharacterTypes.length);
+        var characterType = availableCharacterTypes[indexOfCharacterTypes];
+
+
+        var characterNumber = Math.floor(Math.random() *(allRequestedCharacters[characterType].length));
+
+        password.push(allRequestedCharacters[characterType][characterNumber]);
+    }
+
+    password = password.toString().replace(/,/g,"");
+
+    return password;
+}
+
+function getListOfCharacterTypes(numberOfCharacterTypes){
+    var characterTypes = [];
+    for (var i =0; i<numberOfCharacterTypes; i++){
+        characterTypes.push(i);
+    }
+    return characterTypes;
+}
 
 //get requested characters
 function getRequestedCharacters (userSelection){
@@ -72,7 +104,7 @@ function getRequestedCharacters (userSelection){
         allRequestedCharacters.push(getLowerCaseCharacters());
     }
 
-    if (userSelection.includeUpperCase){
+    if (userSelection.includeUppercase){
         allRequestedCharacters.push(getUpperCaseCharacters());
     }
 
@@ -84,7 +116,7 @@ function getRequestedCharacters (userSelection){
         allRequestedCharacters.push(getSpecialCharacters());
     }
 
-    return allRequestedCharacters
+    return allRequestedCharacters;
 }
 
 // functinons for characters
@@ -113,8 +145,8 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-    var criteria= getCriteria();
-    var password = generatePassword();
+    var criteria = getCriteria();
+    var password = generatePassword(criteria);
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
