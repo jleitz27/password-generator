@@ -1,18 +1,34 @@
 // Assignment code here
-//Code to run 
+// Get Criteria Function
 function getCriteria() {
     var userCriteria = {
         length: 8,
-        includelowerCase: true,
-        includeupperCase: false,
-        includenumbers: false,
-        includespecialCharacters: false,
+        includeLowerCase: true,
+        includeUpperCase: false,
+        includeNumbers: false,
+        includeSpecialCharacters: false,
     }
 
     userCriteria.length = askPasswordLength ();
-    console.log(length)
 
-    function askPasswordLength(){
+    //Prompts for character types
+    do {
+        userCriteria.includeLowerCase = confirm("Do you want to include lowercase characters?");
+
+        userCriteria.includeUpperCase = confirm("Do you want to include uppercase characters?");
+
+        userCriteria.includeNumbers = confirm("Do you want to include numbers?");
+
+        userCriteria.includeSpecialCharacters = confirm("Do you want to include special characters?");
+
+
+    } while (!isCharacterTypeSelected(userCriteria));
+
+    return userCriteria;
+}
+
+    // Set length of password to 8-128 characters
+function askPasswordLength(){
         var length = prompt("How long do you want the password to be? (Must be between 8 and 128 characters)");
         
         while (!isPasswordLengthValid (length)) {
@@ -20,10 +36,10 @@ function getCriteria() {
         }
         
         return length;
-    }    
+}    
         
 
-        function isPasswordLengthValid (length){
+function isPasswordLengthValid (length){
             var convertedLength = Number(length);
             var isPasswordLengthValid = (!Number.isNaN(convertedLength)
             && convertedLength % 1===0
@@ -31,12 +47,34 @@ function getCriteria() {
             && convertedLength <=123);
 
             return isPasswordLengthValid;
-        }
+}
     
+
+
+//get requested characters
+function getRequestedCharacters (userSelection){
+    var allRequestedCharacters = [];
+
+    if (userSelection.includeLowerCase) {
+        allRequestedCharacters.push(getLowerCaseCharacters());
+    }
+
+    if (userSelection.includeUpperCase){
+        allRequestedCharacters.push(getUpperCaseCharacters());
+    }
+
+    if (userSelection.includeNumbers){
+        allRequestedCharacters.push(getLowerCaseCharacters());
+    }
+
+    if (userSelection.includeSpecialCharacters){
+        allRequestedCharacters.push(getSpecialCharacters());
+    }
+
+    return allRequestedCharacters
 }
 
 // functinons for characters
-
 function getLowerCaseCharacters(){
     var lowerCase = ["a", "b","c", "d", "e", "f", "g", "h", "i", "j", "k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
     return lowerCase
