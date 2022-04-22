@@ -1,21 +1,4 @@
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-    var criteria= getCriteria();
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
-
-    console.log(getCriteria)
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
+// Assignment code here
 //Code to run 
 function getCriteria() {
     var userCriteria = {
@@ -73,3 +56,22 @@ function getSpecialCharacters(){
     var specialCharacters =["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~",'"'];
     return specialCharacters 
 }
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+    var criteria= getCriteria();
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+
+    passwordText.value = password;
+
+    console.log(getCriteria)
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
