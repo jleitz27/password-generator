@@ -13,6 +13,7 @@ User is asked whether or not to include lowercase, uppercase, numeric, and/or sp
 * JavaScript
 
 ## Website
+https://jleitz27.github.io/password-generator/
 
 ##
 <p align="center">
