@@ -83,7 +83,13 @@ function generatePassword(userCriteria){
         password.push(allRequestedCharacters[characterType][characterNumber]);
     }
 
-    password = password.toString().replace(/,/g,"");
+    //Remove used character
+    availableCharacterTypes.splice(indexOfCharacterTypes, 1);
+    if (availableCharacterTypes.length === 0){
+        availableCharacterTypes = getListOfCharacterTypes(numberOfCharacterTypes);
+    }
+
+    
 
     return password;
 }
@@ -109,7 +115,7 @@ function getRequestedCharacters (userSelection){
     }
 
     if (userSelection.includeNumbers){
-        allRequestedCharacters.push(getLowerCaseCharacters());
+        allRequestedCharacters.push(getNumberList());
     }
 
     if (userSelection.includeSpecialCharacters){
@@ -145,8 +151,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-    var criteria = getCriteria();
-    var password = generatePassword(criteria);
+    var password = generatePassword(getCriteria());
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
