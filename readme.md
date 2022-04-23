@@ -16,7 +16,7 @@ User is asked whether or not to include lowercase, uppercase, numeric, and/or sp
 
 ##
 <p align="center">
-  <img src="./assets/images/site.png" width="350"
+  <img src="./assets/images/site.gif" width="350"
 
 </p>
 

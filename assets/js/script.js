@@ -46,7 +46,7 @@ function isPasswordLengthValid (length){
             var isPasswordLengthValid = (!Number.isNaN(convertedLength)
             && convertedLength % 1===0
             && convertedLength >=8
-            && convertedLength <=123);
+            && convertedLength <=128);
 
             return isPasswordLengthValid;
 }
@@ -89,7 +89,7 @@ function generatePassword(userCriteria){
         availableCharacterTypes = getListOfCharacterTypes(numberOfCharacterTypes);
     }
 
-    
+    password = password.toString().replace(/,/g, "");
 
     return password;
 }
